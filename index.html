@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="image-container">
-        <img src="image1.jpg" alt="Image 1">
-        <img src="image2.jpg" alt="Image 2">
-        <img src="image3.jpg" alt="Image 3">
-    </div>
-    <div class="content">
-        <h1>İndirmeyen Gay</h1>
-    </div><a href="mobile.py" download="mobile.py" class="download-btn">Mobile Version</a>
-</body>
-</html>
+<div class="content">
+    <h1 id="dosyalarBtn" style="cursor:pointer;">Dosyalar</h1>
+    <ul id="dosyaListesi"></ul>
+</div>
+
+<script>
+    const dosyalar = [
+        "yourdickinmypussy.py",
+        "kod1.txt",
+        "kod2.txt",
+        "kod3.txt"
+    ];
+
+    document.getElementById("dosyalarBtn").addEventListener("click", () => {
+        const liste = document.getElementById("dosyaListesi");
+        liste.innerHTML = "";
+        dosyalar.forEach(dosya => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="/dosyalar/${dosya}" download>${dosya}</a>`;
+            liste.appendChild(li);
+        });
+    });
+                                                            </script>
