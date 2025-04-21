@@ -1,0 +1,2 @@
+def open_website(self, instance):
+    webbrowser.open(self.url)
