@@ -1,26 +1,27 @@
+
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /* Yüksekliği ekranın tamamına yaymak */
     text-align: center;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #d3d3d3;
     margin: 0;
-    padding: 20px 0;
+    padding: 10px; /* padding'i biraz azaltarak boşlukları düşürdük */
 }
 
 .image-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 15px; /* Görseller arasındaki boşluğu biraz daraltmak */
+    margin-top: 10px; /* margin-top'u azaltarak daha az boşluk */
 }
 
 .image-container img {
-    width: 100px;
-    height: 100px;
+    width: 80px; /* Görselleri biraz küçültmek */
+    height: 80px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -29,23 +30,23 @@ body {
     width: 100%;
     text-align: center;
     position: absolute;
-    bottom: 20px;
+    bottom: 10px; /* content alanının alt kısmını yukarı çekmek */
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 36px; /* Başlık boyutunu küçültmek */
     color: #333;
 }
 
 .download-btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
+    margin-top: 10px; /* Buton arasındaki boşluğu azaltmak */
+    padding: 8px 16px; /* Butonun içindeki boşlukları daraltmak */
     background-color: #4CAF50;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px; /* Butonun font boyutunu biraz küçültmek */
     transition: background 0.3s;
 }
 
