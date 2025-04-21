@@ -1,23 +1,32 @@
-<div class="content">
-    <h1 id="dosyalarBtn" style="cursor:pointer;">Dosyalar</h1>
-    <ul id="dosyaListesi"></ul>
-</div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dosya Listesi</title>
+</head>
+<body>
+    <div class="content">
+        <h1 id="dosyalarBtn" style="cursor:pointer;">Dosyalar</h1>
+        <ul id="dosyaListesi"></ul>
+    </div>
 
-<script>
-    const dosyalar = [
-        "yourdickinmypussy.py",
-        "kod1.txt",
-        "kod2.txt",
-        "kod3.txt"
-    ];
+    <script>
+        const dosyalar = [
+            "yourdickinmypussy.py",
+            "kod1.txt",
+            "kod2.txt",
+            "kod3.txt"
+        ];
 
-    document.getElementById("dosyalarBtn").addEventListener("click", () => {
-        const liste = document.getElementById("dosyaListesi");
-        liste.innerHTML = "";
-        dosyalar.forEach(dosya => {
-            const li = document.createElement("li");
-            li.innerHTML = `<a href="/dosyalar/${dosya}" download>${dosya}</a>`;
-            liste.appendChild(li);
+        document.getElementById("dosyalarBtn").addEventListener("click", () => {
+            const liste = document.getElementById("dosyaListesi");
+            liste.innerHTML = "";
+            dosyalar.forEach(dosya => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="/dosyalar/${dosya}" download>${dosya}</a>`;
+                liste.appendChild(li);
+            });
         });
-    });
-                                                            </script>
+    </script>
+</body>
+</html>
