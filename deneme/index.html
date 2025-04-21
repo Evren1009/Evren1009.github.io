@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>PHP Test</title></head>
+<body>
+  <h1>PHP Testi</h1>
+  <button onclick="callPhp()">PHP'ye Git</button>
+  <p id="sonuc"></p>
+
+  <script>
+    function callPhp() {
+      fetch("http://evren,wuaze.com/api.php?name=Ahmet")
+        .then(res => res.text())
+        .then(data => document.getElementById("sonuc").innerText = data)
+        .catch(err => console.error("Hata:", err));
+    }
+  </script>
+</body>
+</html>
