@@ -11,19 +11,19 @@
     </div>
 
     <script>
-        const dosyalar = [
-            "yourdickinmypussy.py",
-            "kod1.txt",
-            "kod2.txt",
-            "kod3.txt"
-        ];
+        window.addEventListener("DOMContentLoaded", () => {
+            const dosyalar = [
+                "yourdickinmypussy.py",
+                "kod1.txt",
+                "kod2.txt",
+                "kod3.txt"
+            ];
 
-        document.getElementById("dosyalarBtn").addEventListener("click", () => {
             const liste = document.getElementById("dosyaListesi");
             liste.innerHTML = "";
             dosyalar.forEach(dosya => {
                 const li = document.createElement("li");
-                li.innerHTML = `<a href="/dosyalar/${dosya}" download>${dosya}</a>`;
+                li.innerHTML = `<a href="dosyalar/${dosya}" download>${dosya}</a>`;
                 liste.appendChild(li);
             });
         });
