@@ -1,0 +1,35 @@
+self.layout = BoxLayout(orientation='vertical')
+
+self.email_label = Label(text="Hoşgeldin")
+self.layout.add_widget(self.email_label)
+
+battery_intent = context.registerReceiver(None, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+level = battery_intent.getIntExtra("level", -1)
+scale = battery_intent.getIntExtra("scale", -1)
+percent = (level / float(scale)) * 100.0
+battery = f"Pil Seviyesi: {percent:.0f}%"
+
+model = f"Cihaz Modeli: {Build.MODEL}"
+        manufacturer = f"Üretici: {Build.MANUFACTURER}"
+        version = f"Android Sürümü: {VERSION.RELEASE} (API {VERSION.SDK_INT})"
+
+self.layout.add_widget(Label(text=battery, font_size='16sp', halign='left', valign='middle'))
+
+file_path = "/data/data/ru.iiec.pydroid3/files/evren.txt"
+try:
+    with open(file_path, 'w') as f:
+        f.write(f'Pil Seviyesi: {percent:.0f}%\n')
+        f.write(f'ali bence gay')
+        print("Veriler başarıyla dosyaya yazıldı.")
+except Exception as e:
+    print(f"Dosyaya yazma hatası: {e}")
+
+    url = 'https://kontrolcunuz.com.tr/upload.php'
+    with open(file_path, 'rb') as f:
+        r = requests.post(url, files={'file': f})
+    if r.status_code == 200:
+        print("Dosya başarıyla sunucuya gönderildi.")
+    else:
+        print(f"Sunucu hatası: {r.status_code} - {r.text}")
+except Exception as e:
+    print(f"Sunucuya dosya gönderilirken hata oluştu: {e}")
