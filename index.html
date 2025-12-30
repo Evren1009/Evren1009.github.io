@@ -1,111 +1,183 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Mutlu Yıllar!</title>
-    <style>
-        body {
-            background-color: #0a0a2e;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<title>Mutlu Yıllar!</title>
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 2px solid #f1c40f;
-            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
-            z-index: 10;
-        }
+<style>
+body{
+    background:#0a0a2e;
+    color:#fff;
+    font-family:Segoe UI, Tahoma, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    overflow:hidden;
+    text-align:center;
+}
 
-        h1 {
-            color: #f1c40f;
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:2rem;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    border:2px solid #f1c40f;
+    box-shadow:0 0 20px rgba(241,196,15,.5);
+    z-index:5;
+}
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
+h1{
+    color:#f1c40f;
+    font-size:2.5rem;
+}
 
-        .btn {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            margin-top: 20px;
-        }
+.btn{
+    background:#e74c3c;
+    color:#fff;
+    border:none;
+    padding:12px 22px;
+    font-size:1rem;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:20px;
+}
 
-        .btn:hover {
-            transform: scale(1.1);
-            background-color: #c0392b;
-        }
+/* HEDİYE KUTUSU */
+#giftBox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    visibility:hidden;
+    opacity:0;
+    transition:.4s;
+    z-index:999;
+}
 
-        /* Basit bir kar tanesi efekti */
-        .snow {
-            position: absolute;
-            top: -10px;
-            color: white;
-            user-select: none;
-            z-index: 1;
-            animation: fall linear infinite;
-        }
+#giftBox.show{
+    visibility:visible;
+    opacity:1;
+}
 
-        @keyframes fall {
-            to { transform: translateY(105vh); }
-        }
-    </style>
+.box{
+    position:relative;
+    width:180px;
+    height:160px;
+    animation:pop .6s ease-out;
+}
+
+.body{
+    width:100%;
+    height:120px;
+    background:#e74c3c;
+    border-radius:0 0 12px 12px;
+}
+
+.lid{
+    position:absolute;
+    top:-40px;
+    width:100%;
+    height:40px;
+    background:#c0392b;
+    border-radius:12px 12px 0 0;
+    animation:openLid .8s forwards;
+}
+
+.ribbon{
+    position:absolute;
+    width:20px;
+    height:100%;
+    background:#f1c40f;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.message{
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:160px;
+    color:#2ecc71;
+    font-weight:bold;
+    font-size:1rem;
+}
+
+@keyframes pop{
+    0%{transform:scale(0)}
+    80%{transform:scale(1.1)}
+    100%{transform:scale(1)}
+}
+
+@keyframes openLid{
+    to{transform:translateY(-30px) rotate(-10deg)}
+}
+
+/* KAR */
+.snow{
+    position:absolute;
+    top:-10px;
+    animation:fall linear infinite;
+    user-select:none;
+}
+
+@keyframes fall{
+    to{transform:translateY(105vh)}
+}
+</style>
 </head>
+
 <body>
 
-    <div class="card">
-        <h1>HOŞ GELDİN 2026! 🎄</h1>
-        <p>Yeni yılda her şey gönlünce olsun!</p>
-        <p><i>"Tm"</i> Bu Kadar <br>
-        
-        <button class="btn" onclick="surprizYap()">Hediye Tıkla!</button>
-        <p id="mesaj" style="margin-top: 20px; font-weight: bold; color: #2ecc71;"></p>
+<div class="card">
+    <h1>HOŞ GELDİN 2026 🎄</h1>
+    <p>Yeni yılda her şey gönlünce olsun!</p>
+    <button class="btn" onclick="surprizYap()">Hediye Tıkla 🎁</button>
+</div>
+
+<!-- HEDİYE -->
+<div id="giftBox">
+    <div class="box">
+        <div class="lid"></div>
+        <div class="body"></div>
+        <div class="ribbon"></div>
+        <div class="message" id="giftText"></div>
     </div>
+</div>
 
-    <script>
-        function surprizYap() {
-            const mesajlar = [
-                "Sana dünyanın en güzel hediyesini verecektim ama kendimi paketleyemedim. 😎"
-            ];
-            const rastgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
-            document.getElementById('mesaj').innerText = rastgele;
-        }
+<script>
+function surprizYap(){
+    const mesajlar=[
+        "Kendimi paketleyemedim 😎",
+        "2026 sürüm mutluluk yüklendi 🎁",
+        "Bu hediye ömür boyu 😉"
+    ];
 
-        // Kar taneleri oluşturma
-        function createSnowflake() {
-            const snow = document.createElement('div');
-            snow.innerHTML = '❄';
-            snow.classList.add('snow');
-            snow.style.left = Math.random() * 100 + 'vw';
-            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
-            snow.style.opacity = Math.random();
-            document.body.appendChild(snow);
+    document.getElementById("giftText").innerText =
+        mesajlar[Math.floor(Math.random()*mesajlar.length)];
 
-            setTimeout(() => {
-                snow.remove();
-            }, 5000);
-        }
+    const box=document.getElementById("giftBox");
+    box.classList.add("show");
 
-        setInterval(createSnowflake, 100);
-    </script>
+    setTimeout(()=>{ box.classList.remove("show"); },3000);
+}
+
+// kar efekti
+function snow(){
+    const s=document.createElement("div");
+    s.innerHTML="❄";
+    s.className="snow";
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),5000);
+}
+setInterval(snow,120);
+</script>
+
 </body>
 </html>
