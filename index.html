@@ -2,31 +2,112 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Dosya Listesi</title>
+    <title>Mutlu Yıllar Dostum!</title>
+    <style>
+        body {
+            background-color: #0a0a2e;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid #f1c40f;
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+            z-index: 10;
+        }
+
+        h1 {
+            color: #f1c40f;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #c0392b;
+        }
+
+        /* Basit bir kar tanesi efekti */
+        .snow {
+            position: absolute;
+            top: -10px;
+            color: white;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh); }
+        }
+    </style>
 </head>
 <body>
-    <div class="content">
-        <h1 id="dosyalarBtn" style="cursor:pointer;">Dosyalar</h1>
-        <ul id="dosyaListesi"></ul>
+
+    <div class="card">
+        <h1>HOŞ GELDİN 2026! 🎄</h1>
+        <p>Yeni yılda her şey gönlünce olsun dostum!</p>
+        <p><i>"Hi"</i> Ha <br> 
+        Hu 😂</p>
+        
+        <button class="btn" onclick="surprizYap()">Hediye Tıkla!</button>
+        <p id="mesaj" style="margin-top: 20px; font-weight: bold; color: #2ecc71;"></p>
     </div>
 
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const dosyalar = [
-                "python.py",
-                "kod1.txt",
-                "kod2.txt",
-                "kod3.txt"
+        function surprizYap() {
+            const mesajlar = [
+                "IBAN gönderiyorum, birazdan 'hediye' gelir (Gelmedi).",
+                "Sana dünyanın en güzel hediyesini verecektim ama kendimi paketleyemedim. 😎"
             ];
+            const rastgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+            document.getElementById('mesaj').innerText = rastgele;
+        }
 
-            const liste = document.getElementById("dosyaListesi");
-            liste.innerHTML = "";
-            dosyalar.forEach(dosya => {
-                const li = document.createElement("li");
-                li.innerHTML = `<a href="dosyalar/${dosya}" download>${dosya}</a>`;
-                liste.appendChild(li);
-            });
-        });
+        // Kar taneleri oluşturma
+        function createSnowflake() {
+            const snow = document.createElement('div');
+            snow.innerHTML = '❄';
+            snow.classList.add('snow');
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snow.style.opacity = Math.random();
+            document.body.appendChild(snow);
+
+            setTimeout(() => {
+                snow.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 100);
     </script>
 </body>
 </html>
