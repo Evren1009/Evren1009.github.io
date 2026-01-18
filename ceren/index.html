@@ -3,47 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Room</title>
+    <title>VIP Entrance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0a0a0a;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a1a2e 0%, #020205 100%);
+        }
+
+        .main-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-        }
-        .container {
-            padding: 20px;
+            z-index: 10;
+            width: 80%;
+            max-width: 500px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            animation: fadeIn 1.5s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
         }
+
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            color: #fff;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 0;
+            text-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff;
+            animation: pulse 2s infinite;
         }
-        p {
+
+        .welcome-text {
+            color: #00d4ff;
             font-size: 1.2rem;
-            opacity: 0.9;
+            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .line {
+            height: 2px;
+            width: 50px;
+            background: #00d4ff;
+            margin: 20px auto;
+            box-shadow: 0 0 10px #00d4ff;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Neon Buton Efekti */
+        .status-badge {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2);
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Room!</h1>
-        <p>Make yourself at home.</p>
+
+    <div id="particles-js"></div>
+
+    <div class="main-card">
+        <h1>WELCOME</h1>
+        <div class="welcome-text">TO MY DOMAIN</div>
+        <div class="line"></div>
+        <p style="color: #888; font-size: 0.9rem;">Access Granted</p>
+        <div class="status-badge">System Online</div>
     </div>
+
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80 },
+                "color": { "value": "#00d4ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3 },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00d4ff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": { "enable": true, "speed": 2 }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
