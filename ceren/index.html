@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Purple Sanctuary</title>
+    <title>Odama Hoşgeldin</title>
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevent scrollbars */
-            background-color: #1a011a; /* Very dark purple */
+            overflow: hidden;
+            background-color: #1a011a;
             font-family: 'Montserrat', sans-serif;
-            color: #e0e0e0; /* Light gray text */
+            color: #e0e0e0;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
-        /* Gradient background with subtle animation */
+        /* Animated gradient background */
         body::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: linear-gradient(45deg, #4b0082, #800080, #da70d6, #8a2be2);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             opacity: 0.6;
-            z-index: 1;
+            z-index: 0;
         }
 
         @keyframes gradientShift {
@@ -41,39 +44,60 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Main content card */
+        /* Floating particles */
+        .bg-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #da70d6, transparent);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* Card */
         .welcome-card {
             position: relative;
             z-index: 10;
             padding: 40px 30px;
-            background: rgba(40, 0, 40, 0.6); /* Semi-transparent dark purple */
+            background: rgba(40, 0, 40, 0.6);
             border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(180, 0, 180, 0.3);
             text-align: center;
             max-width: 450px;
             width: 90%;
-            backdrop-filter: blur(12px); /* Frosted glass effect */
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(150, 0, 150, 0.3);
-            animation: fadeInScale 1.2s ease-out;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transition: transform 0.15s ease;
         }
 
         h1 {
             font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: #d8bfd8; /* Thistle - lighter purple */
-            text-shadow: 0 0 15px #800080, 0 0 25px #4b0082;
+            color: #d8bfd8;
+            text-shadow: 0 0 20px #800080;
             letter-spacing: 2px;
         }
 
         p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            line-height: 1.6;
+            font-size: 1.2rem;
             color: #f0e0f0;
+            margin-top: 10px;
         }
 
         .line {
-            width: 80px;
+            width: 90px;
             height: 3px;
             background: linear-gradient(to right, #8a2be2, #da70d6);
             margin: 25px auto;
@@ -81,66 +105,99 @@
             box-shadow: 0 0 10px #8a2be2;
         }
 
-        /* Interactive Light Particles */
+        /* Light particles (mouse) */
         .light-particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(200, 0, 200, 0.6) 20%, rgba(100, 0, 100, 0) 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(200,0,200,0.6) 30%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
-            opacity: 0;
             animation: fadeOut 2s forwards;
-            filter: blur(5px);
+            filter: blur(6px);
             z-index: 5;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes fadeOut {
             from { opacity: 1; transform: scale(1); }
-            to { opacity: 0; transform: scale(1.5); }
+            to { opacity: 0; transform: scale(1.6); }
         }
 
-        /* Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+        /* Click ripple */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(218, 112, 214, 0.4);
+            transform: translate(-50%, -50%);
+            animation: ripple 0.8s ease-out forwards;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        @keyframes ripple {
+            from { width: 0; height: 0; opacity: 1; }
+            to { width: 200px; height: 200px; opacity: 0; }
+        }
     </style>
 </head>
+
 <body>
 
-    <div class="welcome-card">
-        <h1>Welcome to My Room</h1>
-        <div class="line"></div>
-        <p>Step into a world of purple hues and good vibes. <br>Make yourself comfortable.</p>
-    </div>
+<div class="welcome-card" id="card">
+    <h1>Odama Hoşgeldin</h1>
+    <div class="line"></div>
+    <p>Sakın etrafı dağıtma! 😄</p>
+</div>
 
-    <script>
-        document.addEventListener('mousemove', function(e) {
-            createLightParticle(e.clientX, e.clientY);
-        });
+<script>
+    /* Mouse light particles */
+    document.addEventListener('mousemove', e => {
+        createLight(e.clientX, e.clientY);
+    });
 
-        document.addEventListener('touchstart', function(e) {
-            for (let i = 0; i < e.touches.length; i++) {
-                createLightParticle(e.touches[i].clientX, e.touches[i].clientY);
-            }
-        }, { passive: true });
+    function createLight(x, y) {
+        const p = document.createElement('div');
+        p.className = 'light-particle';
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        const size = Math.random() * 50 + 30;
+        p.style.width = p.style.height = size + 'px';
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 2000);
+    }
 
-        function createLightParticle(x, y) {
-            const particle = document.createElement('div');
-            particle.className = 'light-particle';
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
-            const size = Math.random() * 50 + 30; // Random size between 30 and 80px
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            document.body.appendChild(particle);
+    /* Click ripple */
+    document.addEventListener('click', e => {
+        const r = document.createElement('div');
+        r.className = 'ripple';
+        r.style.left = e.clientX + 'px';
+        r.style.top = e.clientY + 'px';
+        document.body.appendChild(r);
+        setTimeout(() => r.remove(), 800);
+    });
 
-            setTimeout(() => {
-                particle.remove();
-            }, 2000); // Remove particle after 2 seconds (matches fadeOut animation duration)
-        }
-    </script>
+    /* Floating background particles */
+    for (let i = 0; i < 25; i++) {
+        const p = document.createElement('div');
+        p.className = 'bg-particle';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = 10 + Math.random() * 20 + 's';
+        p.style.animationDelay = Math.random() * 10 + 's';
+        document.body.appendChild(p);
+    }
+
+    /* 3D card tilt */
+    const card = document.getElementById('card');
+
+    document.addEventListener('mousemove', e => {
+        const x = (window.innerWidth / 2 - e.clientX) / 25;
+        const y = (window.innerHeight / 2 - e.clientY) / 25;
+        card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+
+    document.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateY(0) rotateX(0)';
+    });
+</script>
+
 </body>
 </html>
