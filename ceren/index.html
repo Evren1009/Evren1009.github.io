@@ -3,126 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Entrance</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <title>Welcome to My Purple Sanctuary</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            background-color: #0a0a0a;
-            font-family: 'Orbitron', sans-serif;
+            overflow: hidden; /* Prevent scrollbars */
+            background-color: #1a011a; /* Very dark purple */
+            font-family: 'Montserrat', sans-serif;
+            color: #e0e0e0; /* Light gray text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
-        #particles-js {
+        /* Gradient background with subtle animation */
+        body::before {
+            content: '';
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #1a1a2e 0%, #020205 100%);
+            background: linear-gradient(45deg, #4b0082, #800080, #da70d6, #8a2be2);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.6;
+            z-index: 1;
         }
 
-        .main-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Main content card */
+        .welcome-card {
+            position: relative;
             z-index: 10;
-            width: 80%;
-            max-width: 500px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
+            padding: 40px 30px;
+            background: rgba(40, 0, 40, 0.6); /* Semi-transparent dark purple */
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(180, 0, 180, 0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            backdrop-filter: blur(12px); /* Frosted glass effect */
+            border: 1px solid rgba(150, 0, 150, 0.3);
+            animation: fadeInScale 1.2s ease-out;
         }
 
         h1 {
-            color: #fff;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin: 0;
-            text-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff;
-            animation: pulse 2s infinite;
-        }
-
-        .welcome-text {
-            color: #00d4ff;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            font-weight: 300;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #d8bfd8; /* Thistle - lighter purple */
+            text-shadow: 0 0 15px #800080, 0 0 25px #4b0082;
             letter-spacing: 2px;
         }
 
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            color: #f0e0f0;
+        }
+
         .line {
-            height: 2px;
-            width: 50px;
-            background: #00d4ff;
-            margin: 20px auto;
-            box-shadow: 0 0 10px #00d4ff;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2be2, #da70d6);
+            margin: 25px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #8a2be2;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
+        /* Interactive Light Particles */
+        .light-particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(200, 0, 200, 0.6) 20%, rgba(100, 0, 100, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: fadeOut 2s forwards;
+            filter: blur(5px);
+            z-index: 5;
         }
 
-        /* Neon Buton Efekti */
-        .status-badge {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            border: 1px solid #00d4ff;
-            color: #00d4ff;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2);
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(1.5); }
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="particles-js"></div>
-
-    <div class="main-card">
-        <h1>WELCOME</h1>
-        <div class="welcome-text">TO MY DOMAIN</div>
+    <div class="welcome-card">
+        <h1>Welcome to My Room</h1>
         <div class="line"></div>
-        <p style="color: #888; font-size: 0.9rem;">Access Granted</p>
-        <div class="status-badge">System Online</div>
+        <p>Step into a world of purple hues and good vibes. <br>Make yourself comfortable.</p>
     </div>
 
     <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80 },
-                "color": { "value": "#00d4ff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
-                "size": { "value": 3 },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#00d4ff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": { "enable": true, "speed": 2 }
-            },
-            "interactivity": {
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" }
-                }
-            }
+        document.addEventListener('mousemove', function(e) {
+            createLightParticle(e.clientX, e.clientY);
         });
+
+        document.addEventListener('touchstart', function(e) {
+            for (let i = 0; i < e.touches.length; i++) {
+                createLightParticle(e.touches[i].clientX, e.touches[i].clientY);
+            }
+        }, { passive: true });
+
+        function createLightParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'light-particle';
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            const size = Math.random() * 50 + 30; // Random size between 30 and 80px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 2000); // Remove particle after 2 seconds (matches fadeOut animation duration)
+        }
     </script>
 </body>
 </html>
